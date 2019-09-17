@@ -1,4 +1,4 @@
-FROM hiorgserver/docker-php:php7.0
+FROM hiorgserver/docker-php:php7.3
 
 RUN \
     apt-get update &&\
