@@ -7,7 +7,15 @@
 # SSH_USER
 # SSH_PRIVATE_KEY
 # SSH_HOSTKEYS (i.e. copied from your local ~/.ssh/known_hosts)
-# ...and as optional CLI-parameter: $0 /path/to/deploy-skript-on-remote-host
+# ...and as optional CLI-parameter: $0 /path/to/deploy-skript-on-remote-host arguments...
+
+# assert ENV
+[ -z "$SSH_HOST" ] && echo "SSH_HOST empty" && exit 1
+[ -z "$SSH_PORT" ] && SSH_PORT="22"
+[ -z "$SERVER_PATH" ] && echo "SERVER_PATH empty" && exit 1
+[ -z "$SSH_USER" ] && echo "SSH_USER empty" && exit 1
+[ -z "$SSH_PRIVATE_KEY" ] && echo "SSH_PRIVATE_KEY empty" && exit 1
+[ -z "$SSH_HOSTKEYS" ] && echo "SSH_HOSTKEYS empty" && exit 1
 
 echo ">>> Starting ssh-agent"
 # run ssh-agent in background
