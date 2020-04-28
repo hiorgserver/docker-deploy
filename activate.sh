@@ -19,12 +19,12 @@ echo "$SSH_HOSTKEYS" > ~/.ssh/known_hosts
 SKRIPT="$1 $2 $3"
 shift 3
 
-result=0
+RESULT=0
 
 for SSH_HOST in "$@"
 do
   echo ">>> Start deployment on remote host: $SSH_HOST > $SKRIPT"
-  ssh -p$SSH_PORT $SSH_USER@$SSH_HOST "$SKRIPT" || result=1
+  ssh -p$SSH_PORT $SSH_USER@$SSH_HOST "$SKRIPT" || RESULT=1
 done
 
-exit $result
+exit $RESULT
