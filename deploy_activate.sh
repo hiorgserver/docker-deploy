@@ -18,7 +18,7 @@
 [ -z "$SERVER_PATH" ] && echo "SERVER_PATH empty" && exit 1
 [ -z "$WARMUP_SCRIPT" ] && echo "[INFO]: WARMUP_SCRIPT empty"
 [ -z "$ACTIVATE_SCRIPT" ] && echo "[INFO]: ACTIVATE_SCRIPT empty"
-[ -z "$@" ] && echo "No deploy target -- Syntax: $0 host1 host2 host3 ..." && exit 1
+[ $# -eq 0 ] && echo "No deploy target(s) -- Syntax: $0 host1 host2 host3 ..." && exit 1
 
 echo ">>> Starting ssh-agent"
 # run ssh-agent in background
