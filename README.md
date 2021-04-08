@@ -37,6 +37,6 @@ Build docker image (als Name wird `hiorg-deploy` gewählt):
 
     docker build -t hiorg-deploy .
 
-Nun kann der Container ausgeführt werden:
+Nun kann der Container ausgeführt werden: 
 
     docker run -it --rm hiorg-deploy /bin/sh
