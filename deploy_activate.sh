@@ -41,11 +41,13 @@ do
   echo ">>> Copy files to $SSH_HOST"
   scp -P$SSH_PORT -r $CI_PROJECT_DIR/* $SSH_USER@$SSH_HOST:$SERVER_PATH || exit 1
 
-  echo ">>> Testing presence of (Laravel) Enviroment-Files files in project directory"
-  if test -f "$ENV_CONFIG_FILE"; then
-  echo ">>> Copy (Laravel) Enviroment-Files files to $SSH_HOST"
+  echo ">>> Testing presence of (Laravel) Enviroment-Files files to $SSH_HOST"
+  if [[ -f "$ENV_CONFIG_FILE" ]]; then  
+    echo ">>> Copy (Laravel) Enviroment-Files files to $SSH_HOST"
     scp -P$SSH_PORT $ENV_CONFIG_FILE $SSH_USER@$SSH_HOST:$SERVER_PATH/. || exit 1
-  fi
+  else 
+    echo " - $ENV_CONFIG_FILE existiert in diesem Projekt nicht"
+  fi  
 
   if [[ ! -z "$WARMUP_SCRIPT" ]]; then
     echo ">>> Run script on remote host: $SSH_HOST > $WARMUP_SCRIPT"
