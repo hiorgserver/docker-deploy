@@ -20,6 +20,8 @@
 [ -z "$ACTIVATE_SCRIPT" ] && echo "[INFO]: ACTIVATE_SCRIPT empty"
 [ $# -eq 0 ] && echo "No deploy target(s) -- Syntax: $0 host1 host2 host3 ..." && exit 1
 
+ENV_CONFIG_FILE=$CI_PROJECT_DIR/.env
+
 echo ">>> Starting ssh-agent"
 # run ssh-agent in background
 eval $(ssh-agent -s)
@@ -40,7 +42,9 @@ do
   scp -P$SSH_PORT -r $CI_PROJECT_DIR/* $SSH_USER@$SSH_HOST:$SERVER_PATH || exit 1
 
   echo ">>> Copy (Laravel) Enviroment-Files files to $SSH_HOST"
-  scp -P$SSH_PORT -r $CI_PROJECT_DIR/.env* $SSH_USER@$SSH_HOST:$SERVER_PATH/. || exit 1
+  if test -f "$ENV_CONFIG_FILE"; then
+    scp -P$SSH_PORT $ENV_CONFIG_FILE $SSH_USER@$SSH_HOST:$SERVER_PATH/. || exit 1
+  fi
 
   if [[ ! -z "$WARMUP_SCRIPT" ]]; then
     echo ">>> Run script on remote host: $SSH_HOST > $WARMUP_SCRIPT"
