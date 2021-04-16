@@ -41,8 +41,9 @@ do
   echo ">>> Copy files to $SSH_HOST"
   scp -P$SSH_PORT -r $CI_PROJECT_DIR/* $SSH_USER@$SSH_HOST:$SERVER_PATH || exit 1
 
-  echo ">>> Copy (Laravel) Enviroment-Files files to $SSH_HOST"
+  echo ">>> Testing presence of (Laravel) Enviroment-Files files in project directory"
   if test -f "$ENV_CONFIG_FILE"; then
+  echo ">>> Copy (Laravel) Enviroment-Files files to $SSH_HOST"
     scp -P$SSH_PORT $ENV_CONFIG_FILE $SSH_USER@$SSH_HOST:$SERVER_PATH/. || exit 1
   fi
 
