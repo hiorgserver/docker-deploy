@@ -39,6 +39,9 @@ do
   echo ">>> Copy files to $SSH_HOST"
   scp -P$SSH_PORT -r $CI_PROJECT_DIR/* $SSH_USER@$SSH_HOST:$SERVER_PATH || exit 1
 
+  echo ">>> Copy (Laravel) Enviroment-Files files to $SSH_HOST"
+  scp -P$SSH_PORT -r $CI_PROJECT_DIR/.env* $SSH_USER@$SSH_HOST:$SERVER_PATH/. || exit 1
+
   if [[ ! -z "$WARMUP_SCRIPT" ]]; then
     echo ">>> Run script on remote host: $SSH_HOST > $WARMUP_SCRIPT"
     ssh -p$SSH_PORT $SSH_USER@$SSH_HOST "$WARMUP_SCRIPT" || exit 1
