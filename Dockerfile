@@ -3,7 +3,8 @@ FROM hiorgserver/docker-php:php8.0
 RUN \
     apt-get update &&\
     apt-get -y --no-install-recommends install \
-    openssl openssh-client
+    openssl openssh-client \
+    zip
 
 COPY deploy.sh /usr/bin/
 COPY deploy_activate.sh /usr/bin/
