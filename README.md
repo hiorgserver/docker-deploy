@@ -1,6 +1,7 @@
 # docker-deploy
 
-Docker container der auf `hiorgserver/docker-php` basiert und unsere Deploy-Umgebung zur Verfügung stellt.
+Docker container der auf `hiorgserver/docker-php` basiert und unsere Deploy-Umgebung (inkl. NodeJS in der LTS-Version)
+zur Verfügung stellt.
 
 ## Run Container
 Der Container kann von [dockerhub](https://hub.docker.com/r/hiorgserver/docker-deploy/) bezogen 
