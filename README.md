@@ -20,12 +20,6 @@ Das Tag `latest` entspricht immer dem aktuellen `master`.
 
 Wird kein Tag angegeben, so wird `latest` als Default angenommen.
 
-## Build Container
-Bei jedem Push auf den `master` wird ein neuer Container mit dem Tag `latest` gebaut.
-Weiterhin werden für alle Tags, die auf den regulären Ausdruck `/^php([0-9.]+)$/` matchen
- ein Tag mit dem Namen `php{\1}` erzeugt.
-Beispiel: Git Tag `php7.3` erzeugt einen Container mit dem Tag `php7.3`.
-
 ## Build Container locally
 
 Clone repository:
@@ -40,3 +34,12 @@ Build docker image (als Name wird `hiorg-deploy` gewählt):
 Nun kann der Container ausgeführt werden:
 
     docker run -it --rm hiorg-deploy /bin/sh
+
+## Push the image to docker hub
+First build the image and get the image id with `docker images`.
+
+Then rename the docker image and optionally add a specific tag:
+
+    docker tag d9c8d3b75749 hiorgserver/hiorg-deploy[:tag]
+
+Finally push the images to dockerhub: `docker push hiorgserver/hiorg-deploy[:tag]`
