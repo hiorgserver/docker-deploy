@@ -25,22 +25,22 @@ Wird kein Tag angegeben, so wird `latest` als Default angenommen.
 
 Clone repository:
 
-    git clone https://github.com/hiorgserver/hiorg-deploy
-    cd hiorg-deploy
+    git clone https://github.com/hiorgserver/docker-deploy.git
+    cd docker-deploy
 
-Build docker image (als Name wird `hiorg-deploy` gewählt):
+Build docker image (als Name wird `docker-deploy` gewählt):
 
-    docker build -t hiorg-deploy .
+    docker build -t docker-deploy .
 
 Nun kann der Container ausgeführt werden:
 
-    docker run -it --rm hiorg-deploy /bin/sh
+    docker run -it --rm docker-deploy /bin/sh
 
 ## Push the image to docker hub
 First build the image and get the image id with `docker images`.
 
 Then rename the docker image and optionally add a specific tag:
 
-    docker tag d9c8d3b75749 hiorgserver/hiorg-deploy[:tag]
+    docker tag d9c8d3b75749 hiorgserver/docker-deploy[:tag]
 
-Finally push the images to dockerhub: `docker push hiorgserver/hiorg-deploy[:tag]`
+Finally push the images to dockerhub: `docker push hiorgserver/docker-deploy[:tag]`
